@@ -21,7 +21,7 @@ def get_latest_video_description(channel_username, po_token=None):
     """
     # 创建频道对象
     if po_token:
-        channel = Channel(f"https://youtube.com/channel/{channel_username}", po_token)
+        channel = Channel(f"https://youtube.com/channel/{channel_username}", 'WEB')
     else:
         channel = Channel(f"https://youtube.com/channel/{channel_username}")
 
@@ -67,11 +67,10 @@ if __name__ == '__main__':
     # 使用示例
     username = "UCOQ5AdvDNOfyEAJY5SDXVZg"  # 替换为目标频道用户名
     if is_github_action:
-        logging.info("正在运行在GitHub Action中")
-        result = get_latest_video_description(username, po_token=po_token.po_token_verifier())
+        logging.info("运行在GitHub Action中")
+        result = get_latest_video_description(username, True)
     else:
         result = get_latest_video_description(username)
-
     if not result:
         logging.error("未能获取视频信息")
         exit(1)
