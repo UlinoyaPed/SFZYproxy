@@ -12,16 +12,18 @@ import po_token
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 
 
-def get_latest_video_description(channel_username, po_token=None):
+def get_latest_video_description(channel_username, is_action=False):
     """
     通过pytube获取频道最新视频信息
-    :param po_token:
+    :param is_action:
     :param channel_username: YouTube频道用户名
     :return: (视频标题, 视频简介)
     """
     # 创建频道对象
-    channel = Channel(f"https://youtube.com/channel/{channel_username}", 'ANDROID')
-
+    if is_action:
+        channel = Channel(f"https://youtube.com/channel/{channel_username}", 'WEB_EMBED')
+    else:
+        channel = Channel(f"https://youtube.com/channel/{channel_username}")
 
     # 获取视频列表
     videos = channel.videos
