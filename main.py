@@ -20,10 +20,8 @@ def get_latest_video_description(channel_username, po_token=None):
     :return: (视频标题, 视频简介)
     """
     # 创建频道对象
-    if po_token:
-        channel = Channel(f"https://youtube.com/channel/{channel_username}", 'WEB')
-    else:
-        channel = Channel(f"https://youtube.com/channel/{channel_username}")
+    channel = Channel(f"https://youtube.com/channel/{channel_username}", 'WEB')
+
 
     # 获取视频列表
     videos = channel.videos
